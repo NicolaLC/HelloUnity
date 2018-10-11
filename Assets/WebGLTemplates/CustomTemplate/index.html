@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>%UNITY_WEB_NAME%</title>
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/UnityProgress.javascript"></script>
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+    <script>
+        var oldconsole = console;
+        window.console = console;
+        var console = {};
+
+        console.log = function(m){
+            oldconsole.log('%c' + m,'color: #2ecc71;');
+        };
+
+        console.warn = function(m){
+            oldconsole.log('%c' + m,'color: #f39c12;');
+        };
+
+        console.error = function(m){
+            oldconsole.log('%c' + m,'color: #e74c3c;');
+        };
+
+        oldconsole.log("%cWELCOME TO MY PERSONAL DEMO", "font-size:18pt; color: #4a4a4a");
+        oldconsole.log("%cIf you like this demo, and you need an help or some infos", "font-size:11pt; color: #4a4a4a");
+        oldconsole.log("%cfeel free to contact me @ nicolacastellanidev@gmail.com", "font-size:11pt; color: #4a4a4a");
+        
+        var gameInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress, Module: {onRuntimeInitialized: ()=>{
+            oldconsole.log('%c Unity scene loaded.','color: #c0392b;font-style:14pt;');
+        }}});
+    </script>
+</head>
+<body>
+<div class="webgl-content">
+    <div id="gameContainer" style="width: %UNITY_WIDTH%px; height: %UNITY_HEIGHT%px"></div>
+</div>
+<script src="assets/responsive.javascript"></script>
+</body>
+</html>
